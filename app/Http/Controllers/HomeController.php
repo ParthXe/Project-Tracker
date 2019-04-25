@@ -35,4 +35,9 @@ class HomeController extends Controller
     {
        return view('approval');
     }
+
+    public function role()
+    {
+       return view('role');
+    }
 }
