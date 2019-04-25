@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2019 at 10:21 AM
+-- Generation Time: Apr 25, 2019 at 02:56 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -39,8 +39,9 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1);
+(4, '2014_10_12_000000_create_users_table', 1),
+(5, '2014_10_12_100000_create_password_resets_table', 1),
+(6, '2019_04_25_055520_add_admin_to_users_table', 1);
 
 -- --------------------------------------------------------
 
@@ -64,19 +65,25 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `admin` tinyint(1) NOT NULL DEFAULT '0',
+  `approved_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Parth Desai', 'parth@xeniumdigital.com', NULL, '$2y$10$rVvJdXUe1QariQ0D4JWQEuoECdQv3SBvWTbfqWJXBhbxNKY.jCr.C', NULL, '2019-04-24 01:08:46', '2019-04-24 01:08:46');
+INSERT INTO `users` (`id`, `name`, `email`, `role`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `admin`, `approved_at`) VALUES
+(1, 'Admin', 'parth@xeniumdigital.com', 'admin', '2019-04-25 02:26:08', '$2y$10$ST75S2c.1yJrIH/jjv1zMe0vdXaI0vyNrNkjzs7leWCE9ZW2UKGwG', NULL, '2019-04-25 02:26:08', '2019-04-25 02:26:08', 1, '2019-04-25 02:26:08'),
+(2, 'Parth Desai', 'parth1@xeniumdigital.com', 'Programmer', NULL, '$2y$10$DUSfTcYTdu8drmoLyH1h9O5KF7KPCEgb6Bh2QjkZqqq6VyifkISjm', NULL, '2019-04-25 02:26:44', '2019-04-25 02:28:54', 0, '2019-04-25 02:28:54'),
+(3, 'Ashish Gosavi', 'ashish@xeniumdigital.com', 'Programmer', NULL, '$2y$10$sykY5dMOGtec0W09JJlyieYxuEb66nJErA3R1aeCaZ3TobMxHZroO', NULL, '2019-04-25 02:29:18', '2019-04-25 02:36:37', 0, '2019-04-25 02:36:37'),
+(4, 'Madhavi Angre', 'madhavi@xeniumdigital.com', 'Programmer', NULL, '$2y$10$WTdr/0pMQsu5XLQIyeWc8.UlcZDMuneM0aKGTZLorNAMD5JSF5L2.', NULL, '2019-04-25 03:03:52', '2019-04-25 03:04:38', 0, '2019-04-25 03:04:38');
 
 --
 -- Indexes for dumped tables
@@ -109,13 +116,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
