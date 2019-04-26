@@ -21,6 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/approval', 'HomeController@approval')->name('approval');
 
+Route::get('/project_list', 'HomeController@projects')->name('projects');
+
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/approval', 'HomeController@approval')->name('approval');
 

@@ -208,26 +208,29 @@
               <i class="nav-icon fa fa-dashboard"></i>
               <p>
                 Dashboard
-                <i class="right fa fa-angle-left"></i>
+                <i class="right"></i>
+              </p>
+            </a>
+          </li>
+            <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-tree"></i>
+              <p>
+                Projects
+                <i class="fa fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.html" class="nav-link active">
+                <a href="{{ route('create') }}" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Dashboard v1</p>
+                  <p>Create New Projects</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+                <a href="{{ route('projects') }}" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Dashboard v2</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Dashboard v3</p>
+                  <p>Project List</p>
                 </a>
               </li>
             </ul>
