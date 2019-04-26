@@ -62,14 +62,45 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="userrole" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+                            <label for="designation" class="col-md-4 col-form-label text-md-right">{{ __('Designation') }}</label>
 
                             <div class="col-md-6">
-                              <select class="form-control" id="role" name="role">
+                                <input id="designation" type="text" class="form-control @error('designation') is-invalid @enderror" name="designation" value="{{ old('designation') }}" required autocomplete="designation" autofocus>
+
+                                @error('designation')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="userrole" class="col-md-4 col-form-label text-md-right">{{ __('Department') }}</label>
+
+                            <div class="col-md-6">
+                              <select class="form-control" id="department" name="department">
                                         <option value="Programmer">Programmer</option>
                                         <option value="Designer">Designer</option>
                                         <option value="BDMS">Business Developer/Marketing/Sales</option>
                                         <option value="IT">IT/Admin</option>
+                              </select>
+                              @error('department')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="userrole" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+
+                            <div class="col-md-6">
+                              <select class="form-control" id="role" name="role">
+                                        <option value="Team Manager">Team Manager</option>
+                                        <option value="Business Developer">Business Developer</option>
+                                        <option value="User">User</option>
                               </select>
                               @error('role')
                                   <span class="invalid-feedback" role="alert">

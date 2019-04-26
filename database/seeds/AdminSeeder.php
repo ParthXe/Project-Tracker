@@ -15,7 +15,9 @@ class AdminSeeder extends Seeder
         \App\User::create([
            'name' => 'Admin',
            'email' => 'admin@xeniumdigital.com',
-           'role' => 'admin',
+           'role' => 'Superadmin',
+           'department' => 'admin',
+           'designation' => 'admin',
            'email_verified_at' => now(),
            'password' => bcrypt('admin@1234'),
            'admin' => 1,

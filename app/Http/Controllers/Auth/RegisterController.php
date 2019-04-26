@@ -54,6 +54,8 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'role' => 'sometimes|string',
+            'department' => 'sometimes|string',
+            'designation' => 'sometimes|string',
         ]);
     }
 
@@ -70,6 +72,8 @@ class RegisterController extends Controller
               'email' => $data['email'],
               'password' => Hash::make($data['password']),
               'role' => $data['role'],
+              'department' => $data['department'],
+              'designation' => $data['designation'],
             ]);
 
             $admin = User::where('admin', 1)->first();
