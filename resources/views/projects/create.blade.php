@@ -1,99 +1,160 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.admin')
 
-        <title>Laravel</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Register') }}</div>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+                <div class="card-body">
+                    <form method="POST" action="{{ route('save_data') }}">
+                        @csrf
 
-            .full-height {
-                height: 100vh;
-            }
+                        <div class="form-group row">
+                            <label for="project_name" class="col-md-4 col-form-label text-md-right">{{ __('Project Name') }}</label>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+                            <div class="col-md-6">
+                                <input id="project_name" type="text" class="form-control @error('project_name') is-invalid @enderror" name="project_name" value="{{ old('project_name') }}" required autocomplete="name" autofocus>
 
-            .position-ref {
-                position: relative;
-            }
+                                @error('project_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Project Id') }}</label>
 
-            .content {
-                text-align: center;
-            }
+                            <div class="col-md-6">
+                                <input id="project_id" type="text" class="form-control @error('name') is-invalid @enderror" name="project_id" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-            .title {
-                font-size: 84px;
-            }
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+                        <div class="form-group row">
+                            <label for="project_type" class="col-md-4 col-form-label text-md-right">{{ __('Project Type') }}</label>
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+                            <div class="col-md-6">
+                              <select class="form-control" id="project_type" name="project_type">
+                                        <option value="Event">Event</option>
+                                        <option value="Digital Transformation">Digital Transformation</option>
+                                        <option value="Experience Center">Experience Center</option>
+                              </select>
+                              @error('department')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                            </div>
+                        </div>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+                        <div class="form-group row">
+                            <label for="project_value" class="col-md-4 col-form-label text-md-right">{{ __('Project value') }}</label>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+                            <div class="col-md-6">
+                                <input id="project_value" type="text" class="form-control @error('password') is-invalid @enderror" name="project_value" required autocomplete="new-password">
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="start_date" class="col-md-4 col-form-label text-md-right">{{ __('Project start date') }}</label>
+
+                            <div class="col-md-6 input-group date" data-provide="datepicker">
+                            <input name="start_date" type="text" class="form-control">
+                            <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="end_date" class="col-md-4 col-form-label text-md-right">{{ __('Project end date') }}</label>
+
+                            <div class="col-md-6 input-group date" data-provide="datepicker">
+                                <input name="end_date" type="text" class="form-control">
+                                <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="duration" class="col-md-4 col-form-label text-md-right">{{ __('Project Duration') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="duration" type="text" class="form-control @error('duration') is-invalid @enderror" name="duration" value="{{ old('duration') }}" required autofocus>
+
+                                @error('duration')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="project_status" class="col-md-4 col-form-label text-md-right">{{ __('Project Status') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="project_status" type="text" class="form-control @error('project_status') is-invalid @enderror" name="project_status" value="{{ old('project_status') }}" required autofocus>
+
+                                @error('project_status')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="manager_name" class="col-md-4 col-form-label text-md-right">{{ __('Project Created By') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="manager_name" type="text" class="form-control @error('manager_name') is-invalid @enderror" name="manager_name" value="{{ old('manager_name') }}" required autofocus>
+
+                                @error('manager_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Submit') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+</div>
+<script type="text/javascript">
+    $('.datepicker').datepicker({
+    format: 'mm/dd/yyyy',
+    startDate: '-3d'
+});
+</script>
+@endsection

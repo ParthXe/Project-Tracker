@@ -25,28 +25,7 @@
             <th>Details</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($projects as $project)
-        <tr>
-            <td>{{ $project->id}}</td>
-            <td>{{ $project->project_name }}</td>
-            <td>{{ $project->project_type }}</td>
-            <td>
-                <form action="" method="POST">
-   
-                    <a class="btn btn-info" href="{{ route('show') }}">Show</a>
-
- 
-    
-                    <a class="btn btn-primary" href="{{ route('edit') }}">Edit</a>
-   
-                    @csrf
-                    @method('DELETE')
-      
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
+        
     </table>
   
       

@@ -41,9 +41,6 @@ class HomeController extends Controller
        return view('role');
     }
 
-    public function projects()
-    {
-       return view('projects.project_list');
-    }
+
 
 }
