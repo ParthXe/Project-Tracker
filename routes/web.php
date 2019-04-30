@@ -24,10 +24,10 @@ Route::get('/approval', 'HomeController@approval')->name('approval');
 Route::get('/project_list', 'ProjectController@projects')->name('projects');
 Route::get('/create_project', 'ProjectController@create')->name('create');
 Route::post('/submit_project', 'ProjectController@save_data')->name('save_data');
-Route::get('/show_project', 'ProjectController@show')->name('show');
-Route::get('/edit_project', 'ProjectController@edit')->name('edit');
-Route::get('/update_project', 'ProjectController@update')->name('update');
-Route::get('/delete_project', 'ProjectController@delete')->name('delete');
+Route::get('/show_project/{id}', 'ProjectController@show')->name('show');
+Route::get('/edit_project/{id}', 'ProjectController@edit')->name('edit');
+Route::post('/update_project/{id}', 'ProjectController@update')->name('update');
+Route::get('/delete_project/{id}', 'ProjectController@destroy')->name('destroy');
 
 
 
