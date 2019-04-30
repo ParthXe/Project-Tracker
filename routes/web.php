@@ -21,6 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/approval', 'HomeController@approval')->name('approval');
 
+//project upload routes
+
 Route::get('/project_list', 'ProjectController@projects')->name('projects');
 Route::get('/create_project', 'ProjectController@create')->name('create');
 Route::post('/submit_project', 'ProjectController@save_data')->name('save_data');
@@ -29,6 +31,15 @@ Route::get('/edit_project/{id}', 'ProjectController@edit')->name('edit');
 Route::post('/update_project/{id}', 'ProjectController@update')->name('update');
 Route::get('/delete_project/{id}', 'ProjectController@destroy')->name('destroy');
 
+//task upload routes
+
+Route::get('/task_list', 'TaskController@task')->name('task');
+Route::get('/create_task', 'TaskController@create')->name('create');
+Route::post('/submit_task', 'TaskController@save_data')->name('save_data');
+Route::get('/show_task/{id}', 'TaskController@show')->name('show');
+Route::get('/edit_task/{id}', 'TaskController@edit')->name('edit');
+Route::post('/update_task/{id}', 'TaskController@update')->name('update');
+Route::get('/delete_task/{id}', 'TaskController@destroy')->name('destroy');
 
 
 Route::middleware(['auth'])->group(function () {
