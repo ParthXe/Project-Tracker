@@ -25,24 +25,24 @@
             <th>Details</th>
             <th width="280px">Action</th>
         </tr>
+        <div style="display: none;">{{ $i=1 }}</div>
         @foreach ($projects as $project)
         <tr>
-            <td>{{ $project->id}}</td>
+            <td>{{ $i++}}</td>
             <td>{{ $project->project_name }}</td>
             <td>{{ $project->project_type }}</td>
             <td>
                 <form action="" method="POST">
    
-                    <a class="btn btn-info" href="{{ route('show') }}">Show</a>
+                    <a class="btn btn-info" href="{{ route('show',$project->id) }}">Show</a>
 
  
     
-                    <a class="btn btn-primary" href="{{ route('edit') }}">Edit</a>
+                    <a class="btn btn-primary" href="{{ route('edit',$project->id) }}">Edit</a>
    
-                    @csrf
-                    @method('DELETE')
+
       
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <a class="btn btn-danger" href="{{ route('destroy',$project->id) }}">Delete</a>
                 </form>
             </td>
         </tr>

@@ -45,23 +45,45 @@ class ProjectController extends Controller
 		return redirect('/home');
 	}
 
-	public function edit()
+	public function edit($id)
     {
-        return view('projects.edit');
+    	$project = DB::select('select * from projects where id = ?',[$id]);
+                        //print_r($project);
+                        //exit();
+        return view('projects.edit',['projects'=>$project]);
     }
 
-	public function show()
+	public function show($id)
     {
-        return view('projects.show');
+    	$project = DB::select('select * from projects where id = ?',[$id]);
+        return view('projects.show',['projects'=>$project]);
     }
 
-   	public function update()
+   	public function update(Request $request,$id)
     {
-        //return view('projects.create');
-    }
+        
+        $project_name= $request['project_name'];
+		$project_id= $request['project_id'];
+		$project_type= $request['project_type'];
+		$project_total_value= $request['project_value'];
+		$project_start_date= $request['start_date'];
+		$project_end_date= $request['end_date'];
+		$project_duration= $request['duration'];
+		$project_status= $request['project_status'];
+		$project_created_by= $request['manager_name'];
 
-   	public function delete()
+		DB::update('update projects set project_id = ?,project_name=?,project_type=?,project_total_value=?,	project_start_date=?,project_end_date=?,project_duration=?,project_created_by=?,project_status=? where id = ?',[$project_id,$project_name,$project_type,$project_total_value,$project_start_date,$project_end_date,$project_duration,$project_status,$project_created_by, $id]);
+
+		        return redirect()->route('projects')
+                        ->with('success','Project updated successfully');
+	}
+
+   	public function destroy($id)
     {
-        //return view('projects.create');
+        //DB::delete('delete from projects where id = ?',[$id]);
+
+        $project = Project::find($id);
+        $project->delete();
+      	return redirect()->route('projects')->with('success','Project delete successfully');
     }
 }
