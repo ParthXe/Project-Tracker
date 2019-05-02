@@ -177,7 +177,7 @@
               <a href="#" class="nav-link">
                     <img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
                 <p>
-                  Alexander Pierce
+                  {{Auth::user()->name}}
                   <i class="right fa fa-angle-left"></i>
                 </p>
               </a>
@@ -231,6 +231,29 @@
                 <a href="{{ route('projects') }}" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Project List</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-tree"></i>
+              <p>
+                Task
+                <i class="fa fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('create') }}" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Create New Task</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('task') }}" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Task List</p>
                 </a>
               </li>
             </ul>
@@ -513,13 +536,13 @@
   @yield('content')
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
+<!--   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2018 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.0.0-alpha
     </div>
-  </footer>
+  </footer> -->
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
