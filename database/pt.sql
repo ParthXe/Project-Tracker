@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2019 at 07:35 AM
+-- Generation Time: May 03, 2019 at 10:00 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -43,7 +43,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2014_10_12_100000_create_password_resets_table', 1),
 (6, '2019_04_25_055520_add_admin_to_users_table', 1),
 (7, '2019_04_26_060956_create_projects_table', 2),
-(8, '2019_04_26_114302_create_projects_table', 3);
+(8, '2019_04_26_114302_create_projects_table', 3),
+(9, '2019_04_30_091310_create_task_table', 4);
 
 -- --------------------------------------------------------
 
@@ -85,6 +86,31 @@ CREATE TABLE `projects` (
 INSERT INTO `projects` (`id`, `project_id`, `project_name`, `project_type`, `project_total_value`, `project_start_date`, `project_end_date`, `project_duration`, `project_created_by`, `project_status`, `created_at`, `updated_at`) VALUES
 (2, 'Narsi_01', 'Narsi', 'BDMS', '1500000', '24th April 2019', '25th May 2019', '1 Month', 'Shashank Gokhe', 'On Process', '2019-04-26 06:21:43', '2019-04-26 06:21:43'),
 (3, 'l &t_01', 'L & T Control Room', 'Experience Center', '2500000', '05/08/2019', '05/10/2019', '2 Months', 'Middle stage', 'Deepak', '2019-04-26 07:10:46', '2019-04-26 07:10:46');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `task_list`
+--
+
+CREATE TABLE `task_list` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `project_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `task_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `task_description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `task_comments` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `assigned_user_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_by` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `task_list`
+--
+
+INSERT INTO `task_list` (`id`, `project_id`, `task_name`, `task_description`, `task_comments`, `assigned_user_id`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, '3', 'Timeline', 'Create CMS for narsi timeline', 'First work on module wise', '2', 'Ashish Gosavi', '2019-04-30 05:16:06', '2019-04-30 05:16:06');
 
 -- --------------------------------------------------------
 
@@ -139,6 +165,12 @@ ALTER TABLE `projects`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `task_list`
+--
+ALTER TABLE `task_list`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -153,13 +185,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `task_list`
+--
+ALTER TABLE `task_list`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
