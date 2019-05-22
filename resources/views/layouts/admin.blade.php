@@ -213,7 +213,6 @@
               </p>
             </a>
           </li>
-           @if ($role == 'admin')
             <li class="nav-item has-treeview">
             <a href="#" class="nav-link {{ Request::is('project_list','create_project') ? 'active' : '' }}">
               <i class="nav-icon fa fa-tree"></i>
@@ -238,8 +237,6 @@
 
             </ul>
           </li>
-           @endif
-          @if ($role == 'Programmer')
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link {{ Request::is('task_list','create_task') ? 'active' : '' }}">
               <i class="nav-icon fa fa-tree"></i>
@@ -263,7 +260,6 @@
               </li>
             </ul>
           </li>
-          @endif
           <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fa fa-th"></i>
