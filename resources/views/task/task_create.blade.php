@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="manager_name" class="col-md-4 col-form-label text-md-right">{{ __('Project Created By') }}</label>
+                            <label for="manager_name" class="col-md-4 col-form-label text-md-right">{{ __('Task Created By') }}</label>
 
                             <div class="col-md-6">
                                 <input id="manager_name" type="text" class="form-control @error('manager_name') is-invalid @enderror" name="manager_name" value="{{Auth::user()->name}}" required autofocus>

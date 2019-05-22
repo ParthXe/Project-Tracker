@@ -9,7 +9,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('save_data') }}">
+                    <form method="POST" action="{{ route('save_project') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Project Id') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('PO no.') }}</label>
 
                             <div class="col-md-6">
                                 <input id="project_id" type="text" class="form-control @error('name') is-invalid @enderror" name="project_id" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -113,7 +113,12 @@
                             <label for="project_status" class="col-md-4 col-form-label text-md-right">{{ __('Project Status') }}</label>
 
                             <div class="col-md-6">
-                                <input id="project_status" type="text" class="form-control @error('project_status') is-invalid @enderror" name="project_status" value="{{ old('project_status') }}" required autofocus>
+                              <select class="form-control" id="project_status" name="project_status">
+                                        <option value="In progress">In progress</option>
+                                        <option value="Complete">Complete</option>
+                                        <option value="Re-open">Re-open</option>
+                                        <option value="On hold">On hold</option>
+                              </select>
 
                                 @error('project_status')
                                     <span class="invalid-feedback" role="alert">
@@ -127,7 +132,7 @@
                             <label for="manager_name" class="col-md-4 col-form-label text-md-right">{{ __('Project Created By') }}</label>
 
                             <div class="col-md-6">
-                                <input id="manager_name" type="text" class="form-control @error('manager_name') is-invalid @enderror" name="manager_name" value="{{Auth::user()->name}}" required autofocus>
+                                <input id="manager_name" type="text" class="form-control @error('manager_name') is-invalid @enderror" name="manager_name" value="{{Auth::user()->name}}" required>
 
                                 @error('manager_name')
                                     <span class="invalid-feedback" role="alert">

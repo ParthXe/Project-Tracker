@@ -44,7 +44,8 @@
         <a href="#" class="nav-link">Contact</a>
       </li> -->
     </ul>
-
+    <?php $role = Auth::user()->role; ?>
+    
     <!-- SEARCH FORM -->
 <!--     <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
@@ -204,7 +205,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="nav-icon fa fa-dashboard"></i>
               <p>
                 Dashboard
@@ -212,8 +213,9 @@
               </p>
             </a>
           </li>
+           @if ($role == 'admin')
             <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link {{ Request::is('project_list','create_project') ? 'active' : '' }}">
               <i class="nav-icon fa fa-tree"></i>
               <p>
                 Projects
@@ -222,21 +224,24 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('create') }}" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Create New Projects</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('projects') }}" class="nav-link">
+                <a href="{{ route('projects') }}" class="nav-link {{ Request::is('project_list') ? 'active' : '' }}">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Project List</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('create_project') }}" class="nav-link {{ Request::is('create_project') ? 'active' : '' }}">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>New Projects</p>
+                </a>
+              </li>
+
             </ul>
           </li>
+           @endif
+          @if ($role == 'Programmer')
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link {{ Request::is('task_list','create_task') ? 'active' : '' }}">
               <i class="nav-icon fa fa-tree"></i>
               <p>
                 Task
@@ -245,19 +250,20 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('create') }}" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Create New Task</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('task') }}" class="nav-link">
+                <a href="{{ route('task') }}" class="nav-link {{ Request::is('task_list') ? 'active' : '' }}">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Task List</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('create') }}" class="nav-link {{ Request::is('create_task') ? 'active' : '' }}">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>New Task</p>
+                </a>
+              </li>
             </ul>
           </li>
+          @endif
           <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fa fa-th"></i>
@@ -589,5 +595,6 @@
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
+
 </body>
 </html>

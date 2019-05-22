@@ -1,6 +1,7 @@
 @extends('layouts.admin')
  
 @section('content')
+<div class="container">
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -31,7 +32,7 @@
                             <label for="project_name" class="col-md-4 col-form-label text-md-right">{{ __('Project Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="project_name" type="text" class="form-control @error('project_name') is-invalid @enderror" name="project_name" value="{{ $projects[0]->project_name }}" required autocomplete="name" autofocus>
+                                <input id="project_name" type="text" class="form-control @error('project_name') is-invalid @enderror" name="project_name" value="{{ $projects[0]->project_name }}" required autocomplete="name">
                                 <input id="projects_sl" type="hidden" class="form-control @error('project_name') is-invalid @enderror" name="id" value="{{ $projects[0]->id }}"  autofocus>
                                 @error('project_name')
                                     <span class="invalid-feedback" role="alert">
@@ -45,7 +46,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Project Id') }}</label>
 
                             <div class="col-md-6">
-                                <input id="project_id" type="text" class="form-control @error('name') is-invalid @enderror" name="project_id" value="{{ $projects[0]->project_id }}" required autocomplete="name" autofocus>
+                                <input id="project_id" type="text" class="form-control @error('name') is-invalid @enderror" name="project_id" value="{{ $projects[0]->project_id }}" required autocomplete="name">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -115,7 +116,7 @@
                             <label for="duration" class="col-md-4 col-form-label text-md-right">{{ __('Project Duration') }}</label>
 
                             <div class="col-md-6">
-                                <input id="duration" type="text" class="form-control @error('duration') is-invalid @enderror" name="duration" value="{{ $projects[0]->project_duration }}" required autofocus>
+                                <input id="duration" type="text" class="form-control @error('duration') is-invalid @enderror" name="duration" value="{{ $projects[0]->project_duration }}" required>
 
                                 @error('duration')
                                     <span class="invalid-feedback" role="alert">
@@ -129,7 +130,7 @@
                             <label for="project_status" class="col-md-4 col-form-label text-md-right">{{ __('Project Status') }}</label>
 
                             <div class="col-md-6">
-                                <input id="project_status" type="text" class="form-control @error('project_status') is-invalid @enderror" name="project_status" value="{{ $projects[0]->project_status }}" required autofocus>
+                                <input id="project_status" type="text" class="form-control @error('project_status') is-invalid @enderror" name="project_status" value="{{ $projects[0]->project_status }}" required>
 
                                 @error('project_status')
                                     <span class="invalid-feedback" role="alert">
@@ -143,7 +144,7 @@
                             <label for="manager_name" class="col-md-4 col-form-label text-md-right">{{ __('Project Created By') }}</label>
 
                             <div class="col-md-6">
-                                <input id="manager_name" type="text" class="form-control @error('manager_name') is-invalid @enderror" name="manager_name" value="{{ $projects[0]->  project_created_by }}" required autofocus>
+                                <input id="manager_name" type="text" class="form-control @error('manager_name') is-invalid @enderror" name="manager_name" value="{{ $projects[0]->  project_created_by }}" required>
 
                                 @error('manager_name')
                                     <span class="invalid-feedback" role="alert">
@@ -162,8 +163,8 @@
                     </form>
                 </div>
             </div>
-        </div
         </div>
-  
+        </div>
+  </div>
       
 @endsection

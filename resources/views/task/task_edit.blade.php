@@ -16,7 +16,7 @@
                             <label for="task_name" class="col-md-4 col-form-label text-md-right">{{ __('Task Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="task_name" type="text" class="form-control @error('task_name') is-invalid @enderror" name="task_name" value="{{ $tasks[0]->task_name }}" required autocomplete="name" autofocus>
+                                <input id="task_name" type="text" class="form-control @error('task_name') is-invalid @enderror" name="task_name" value="{{ $tasks[0]->task_name }}" required autocomplete="name">
 
                                 @error('project_name')
                                     <span class="invalid-feedback" role="alert">
@@ -82,10 +82,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="manager_name" class="col-md-4 col-form-label text-md-right">{{ __('Project Created By') }}</label>
+                            <label for="manager_name" class="col-md-4 col-form-label text-md-right">{{ __('Task Created By') }}</label>
 
                             <div class="col-md-6">
-                                <input id="manager_name" type="text" class="form-control @error('manager_name') is-invalid @enderror" name="manager_name" value="{{Auth::user()->name}}" required autofocus>
+                                <input id="manager_name" type="text" class="form-control @error('manager_name') is-invalid @enderror" name="manager_name" value="{{Auth::user()->name}}" required>
 
                                 @error('manager_name')
                                     <span class="invalid-feedback" role="alert">

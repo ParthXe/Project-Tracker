@@ -1,6 +1,7 @@
 @extends('layouts.admin')
  
 @section('content')
+<div class="container">
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -34,20 +35,20 @@
             <td>
                 <form action="" method="POST">
    
-                    <a class="btn btn-info" href="{{ route('show',$project->id) }}">Show</a>
+                    <a class="btn btn-info" href="{{ route('show_project',$project->id) }}">Show</a>
 
  
     
-                    <a class="btn btn-primary" href="{{ route('edit',$project->id) }}">Edit</a>
+                    <a class="btn btn-primary" href="{{ route('edit_project',$project->id) }}">Edit</a>
    
 
       
-                    <a class="btn btn-danger" href="{{ route('destroy',$project->id) }}">Delete</a>
+                    <a class="btn btn-danger" href="{{ route('destroy_project',$project->id) }}">Delete</a>
                 </form>
             </td>
         </tr>
         @endforeach
     </table>
-  
+  </div>
       
 @endsection

@@ -41,7 +41,8 @@ class TaskController extends Controller
 
 		$task->save();
 
-		return redirect('/home');
+		        return redirect()->route('task.task_list')
+                        ->with('success','Task list create successfully');
 	}
 
 	public function edit($id)
@@ -76,7 +77,31 @@ class TaskController extends Controller
 
 	public function show($id)
     {
-    	// $project = DB::select('select * from projects where id = ?',[$id]);
+    	$projects = DB::select('select * from projects');
+    	$users = DB::select('select * from users');
+    	$task_list = DB::select('select * from task_list where id = ?',[$id]);
+    	foreach ($task_list as $row) {
+    		$pid = $row->project_id;
+    		$uid = $row->assigned_user_id;
+ 		}
+ 		//echo $uid;
+
+		$projects_name = DB::select('select project_name from projects where id = ?',[$pid]);
+		$user_name = DB::select('select name from users where id = ?',[$uid]);
+		//print_r($user_name);
+		//exit();
+    	//print_r($task_list[0]);
+    	//exit();
+
+		$data = [
+			'users'=>  $users,
+			'projects'=> $projects,
+			'tasks'=>$task_list,
+			'pname'=>$projects_name,
+			'uname'=>$user_name
+		];
+
+        return view('task.task_show', $data);
      //    return view('task.show',['projects'=>$project]);
     }
 
@@ -92,16 +117,16 @@ class TaskController extends Controller
 
 		DB::update('update task_list set project_id = ?,task_name=?,task_description=?,task_comments=?, assigned_user_id=?, created_by=? where id = ?',[$project_id,$task_name,$task_description,$task_comments,$assigned_user_id,$created_by, $id]);
 
-		        return redirect()->route('task')
+		        return redirect()->route('task.task_list')
                         ->with('success','Task list updated successfully');
 	}
 
    	public function destroy($id)
     {
-       //  //DB::delete('delete from projects where id = ?',[$id]);
+        DB::delete('delete from task_list where id = ?',[$id]);
 
-       //  $project = Project::find($id);
-       //  $project->delete();
-      	// return redirect()->route('task')->with('success','Project delete successfully');
+        $project = Project::find($id);
+        $project->delete();
+      	return redirect()->route('task.task_list')->with('success','Task delete successfully');
     }
 }

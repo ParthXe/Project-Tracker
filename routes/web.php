@@ -24,12 +24,12 @@ Route::get('/approval', 'HomeController@approval')->name('approval');
 //project upload routes
 
 Route::get('/project_list', 'ProjectController@projects')->name('projects');
-Route::get('/create_project', 'ProjectController@create')->name('create');
-Route::post('/submit_project', 'ProjectController@save_data')->name('save_data');
-Route::get('/show_project/{id}', 'ProjectController@show')->name('show');
-Route::get('/edit_project/{id}', 'ProjectController@edit')->name('edit');
-Route::post('/update_project/{id}', 'ProjectController@update')->name('update');
-Route::get('/delete_project/{id}', 'ProjectController@destroy')->name('destroy');
+Route::get('/create_project', 'ProjectController@create_project')->name('create_project');
+Route::post('/submit_project', 'ProjectController@save_data')->name('save_project');
+Route::get('/show_project/{id}', 'ProjectController@show_project')->name('show_project');
+Route::get('/edit_project/{id}', 'ProjectController@edit_project')->name('edit_project');
+Route::post('/update_project/{id}', 'ProjectController@update_project')->name('update_project');
+Route::get('/delete_project/{id}', 'ProjectController@destroy_project')->name('destroy_project');
 
 //task upload routes
 

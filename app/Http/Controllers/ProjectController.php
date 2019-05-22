@@ -14,7 +14,7 @@ class ProjectController extends Controller
 		return view('projects.project_list',['projects'=>$projects]);
     }
 
-    public function create()
+    public function create_project()
     {
         return view('projects.create');
     }
@@ -42,10 +42,10 @@ class ProjectController extends Controller
 
 		$project->save();
 
-		return redirect('/home');
+		return redirect()->route('projects')->with('success','Project Upload successfully');
 	}
 
-	public function edit($id)
+	public function edit_project($id)
     {
     	$project = DB::select('select * from projects where id = ?',[$id]);
                         //print_r($project);
@@ -53,13 +53,13 @@ class ProjectController extends Controller
         return view('projects.edit',['projects'=>$project]);
     }
 
-	public function show($id)
+	public function show_project($id)
     {
     	$project = DB::select('select * from projects where id = ?',[$id]);
         return view('projects.show',['projects'=>$project]);
     }
 
-   	public function update(Request $request,$id)
+   	public function update_project(Request $request,$id)
     {
         
         $project_name= $request['project_name'];
@@ -72,13 +72,13 @@ class ProjectController extends Controller
 		$project_status= $request['project_status'];
 		$project_created_by= $request['manager_name'];
 
-		DB::update('update projects set project_id = ?,project_name=?,project_type=?,project_total_value=?,	project_start_date=?,project_end_date=?,project_duration=?,project_created_by=?,project_status=? where id = ?',[$project_id,$project_name,$project_type,$project_total_value,$project_start_date,$project_end_date,$project_duration,$project_status,$project_created_by, $id]);
+		DB::update('update projects set project_id = ?,project_name=?,project_type=?,project_total_value=?,	project_start_date=?,project_end_date=?,project_duration=?,project_created_by=?,project_status=? where id = ?',[$project_id,$project_name,$project_type,$project_total_value,$project_start_date,$project_end_date,$project_duration,$project_created_by,$project_status, $id]);
 
 		        return redirect()->route('projects')
                         ->with('success','Project updated successfully');
 	}
 
-   	public function destroy($id)
+   	public function destroy_project($id)
     {
         //DB::delete('delete from projects where id = ?',[$id]);
 
