@@ -41,6 +41,11 @@ Route::get('/edit_task/{id}', 'TaskController@edit')->name('edit');
 Route::post('/update_task/{id}', 'TaskController@update')->name('update');
 Route::get('/delete_task/{id}', 'TaskController@destroy')->name('destroy');
 
+//task_status routes
+Route::get('/task_status_list', 'Task_Status_Controller@task_status_list')->name('task_status_list');
+Route::get('/update_assigned_task', 'Task_Status_Controller@update_assigned_task')->name('update_assigned_task');
+Route::post('/submit_task_status', 'Task_Status_Controller@save_task_status')->name('save_task_status');
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/approval', 'HomeController@approval')->name('approval');
@@ -55,5 +60,5 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
-    
+
 });

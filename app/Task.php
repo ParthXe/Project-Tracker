@@ -13,9 +13,9 @@ class Task extends Model
 		'task_comments',
 		'assigned_user_id',
 		'created_by'
-          
+
           // add all other fields
     ];
 
-    protected $table = 'task_list';
+    protected $table = 'task_status';
 }
