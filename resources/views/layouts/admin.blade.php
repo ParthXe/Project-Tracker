@@ -24,8 +24,13 @@
   <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker-bs3.css') }}">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/jslider/css/jquery.slider.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/jslider/css/bootstrap.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <script src="{{ asset('js/jquery.min.js') }}"></script>
+  <script src="{{ asset('plugins/jslider/js/jquery.slider.min.js') }}"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -45,7 +50,7 @@
       </li> -->
     </ul>
     <?php $role = Auth::user()->role; ?>
-    
+
     <!-- SEARCH FORM -->
 <!--     <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
@@ -256,6 +261,29 @@
                 <a href="{{ route('create') }}" class="nav-link {{ Request::is('create_task') ? 'active' : '' }}">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>New Task</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link {{ Request::is('task_status_list','update_assigned_task') ? 'active' : '' }}">
+              <i class="nav-icon fa fa-tree"></i>
+              <p>
+                Task Status
+                <i class="fa fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('task_status_list') }}" class="nav-link {{ Request::is('task_status_list') ? 'active' : '' }}">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Task Status List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('update_assigned_task') }}" class="nav-link {{ Request::is('update_assigned_task') ? 'active' : '' }}">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Update Assigned Task</p>
                 </a>
               </li>
             </ul>

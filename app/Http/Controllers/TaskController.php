@@ -22,12 +22,12 @@ class TaskController extends Controller
     }
 
 	public function save_data(Request $request)
-	{     
+	{
 
 
 		$this->validate(request(),[
 		//put fields to be validated here
-		]);         
+		]);
 
 		$task= new Task();
 		$task->project_id= $request['project_id'];
@@ -107,8 +107,8 @@ class TaskController extends Controller
 
    	public function update(Request $request,$id)
     {
-        
-        $task_name= $request['task_name'];
+
+    $task_name= $request['task_name'];
 		$project_id= $request['project_id'];
 		$task_description= $request['task_description'];
 		$task_comments= $request['task_comments'];
@@ -128,5 +128,11 @@ class TaskController extends Controller
         $project = Project::find($id);
         $project->delete();
       	return redirect()->route('task.task_list')->with('success','Task delete successfully');
+    }
+
+    public function status()
+    {
+      $task_list = DB::select('select * from task_status');
+      return view('task.task_list',['tasks'=>$task_list]);
     }
 }
