@@ -17,5 +17,5 @@ class Task extends Model
           // add all other fields
     ];
 
-    protected $table = 'task_status';
+    protected $table = 'task_list';
 }

@@ -11,6 +11,7 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('dist/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
   <!-- iCheck -->
   <link rel="stylesheet" href="{{ asset('plugins/iCheck/flat/blue.css') }}">
@@ -162,9 +163,9 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="{{ asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="{{ asset('dist/img/X_128X128.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">Xenium Digital</span>
     </a>
 
     <!-- Sidebar -->
@@ -210,7 +211,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link">
+            <a href="/home" class="nav-link">
               <i class="nav-icon fa fa-dashboard"></i>
               <p>
                 Dashboard
@@ -218,6 +219,7 @@
               </p>
             </a>
           </li>
+          @if ($role == 'admin')
             <li class="nav-item has-treeview">
             <a href="#" class="nav-link {{ Request::is('project_list','create_project') ? 'active' : '' }}">
               <i class="nav-icon fa fa-tree"></i>
@@ -242,6 +244,8 @@
 
             </ul>
           </li>
+           @endif
+            @if ($role == 'admin' || $role == 'HOD')
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link {{ Request::is('task_list','create_task') ? 'active' : '' }}">
               <i class="nav-icon fa fa-tree"></i>
@@ -265,8 +269,10 @@
               </li>
             </ul>
           </li>
+          @endif
+          @if ($role == 'Programmer' || $role == 'admin'  || $role == 'HOD')
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link {{ Request::is('task_status_list','update_assigned_task') ? 'active' : '' }}">
+            <a href="#" class="nav-link {{ Request::is('task_status','assigned_task') ? 'active' : '' }}">
               <i class="nav-icon fa fa-tree"></i>
               <p>
                 Task Status
@@ -275,20 +281,22 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('task_status_list') }}" class="nav-link {{ Request::is('task_status_list') ? 'active' : '' }}">
+                <a href="{{ route('task_status') }}" class="nav-link {{ Request::is('task_status') ? 'active' : '' }}">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Task Status List</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('update_assigned_task') }}" class="nav-link {{ Request::is('update_assigned_task') ? 'active' : '' }}">
+                <a href="{{ route('assigned_task') }}" class="nav-link {{ Request::is('assigned_task') ? 'active' : '' }}">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Update Assigned Task</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          
+          @endif
+<!--           <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fa fa-th"></i>
               <p>
@@ -389,7 +397,7 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-table"></i>
@@ -528,7 +536,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-header">MISCELLANEOUS</li>
+<!--           <li class="nav-header">MISCELLANEOUS</li>
           <li class="nav-item">
             <a href="https://adminlte.io/docs" class="nav-link">
               <i class="nav-icon fa fa-file"></i>
@@ -553,7 +561,7 @@
               <i class="nav-icon fa fa-circle-o text-info"></i>
               <p>Informational</p>
             </a>
-          </li>
+          </li> -->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

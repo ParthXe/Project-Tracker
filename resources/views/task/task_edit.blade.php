@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Task Edit') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('update', $tasks[0]->id) }}">
@@ -85,7 +85,7 @@
                             <label for="manager_name" class="col-md-4 col-form-label text-md-right">{{ __('Task Created By') }}</label>
 
                             <div class="col-md-6">
-                                <input id="manager_name" type="text" class="form-control @error('manager_name') is-invalid @enderror" name="manager_name" value="{{Auth::user()->name}}" required>
+                                <input id="manager_name" type="text" class="form-control @error('manager_name') is-invalid @enderror" name="manager_name" value="{{Auth::user()->name}}" readonly>
 
                                 @error('manager_name')
                                     <span class="invalid-feedback" role="alert">
@@ -95,6 +95,16 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="manager_name" class="col-md-4 col-form-label text-md-right">{{ __('Active') }}</label>
+
+                            <div class="col-md-6">
+                                <label class="container1">
+                                <input type="checkbox" name="active" {{ ( $tasks[0]->active == 1 ) ? 'checked=checked' : '' }}>
+                                <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -109,10 +119,10 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     $('.datepicker').datepicker({
     format: 'mm/dd/yyyy',
     startDate: '-3d'
 });
-</script>
+</script> -->
 @endsection

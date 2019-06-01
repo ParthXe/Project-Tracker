@@ -144,7 +144,7 @@
                             <label for="manager_name" class="col-md-4 col-form-label text-md-right">{{ __('Project Created By') }}</label>
 
                             <div class="col-md-6">
-                                <input id="manager_name" type="text" class="form-control @error('manager_name') is-invalid @enderror" name="manager_name" value="{{ $projects[0]->  project_created_by }}" required>
+                                <input id="manager_name" type="text" class="form-control @error('manager_name') is-invalid @enderror" name="manager_name" value="{{ $projects[0]->  project_created_by }}" readonly>
 
                                 @error('manager_name')
                                     <span class="invalid-feedback" role="alert">

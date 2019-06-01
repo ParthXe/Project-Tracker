@@ -2,16 +2,7 @@
  
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Edit Project {{ $projects[0]->project_name }}</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('create') }}"> Create New Project</a>
-            </div>
-        </div>
-    </div>
+
    
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
@@ -22,7 +13,7 @@
          <div class="row">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"></div>
+                <div class="card-header">Edit Project {{ $projects[0]->project_name }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('update_project', $projects[0]->id) }}">
@@ -151,7 +142,7 @@
                             <label for="manager_name" class="col-md-4 col-form-label text-md-right">{{ __('Project Created By') }}</label>
 
                             <div class="col-md-6">
-                                <input id="manager_name" type="text" class="form-control @error('manager_name') is-invalid @enderror" name="manager_name" value="{{ $projects[0]->  project_created_by }}" required>
+                                <input id="manager_name" type="text" class="form-control @error('manager_name') is-invalid @enderror" name="manager_name" value="{{ $projects[0]->  project_created_by }}" readonly>
 
                                 @error('manager_name')
                                     <span class="invalid-feedback" role="alert">
@@ -160,7 +151,16 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="manager_name" class="col-md-4 col-form-label text-md-right">{{ __('Active') }}</label>
 
+                            <div class="col-md-6">
+                                <label class="container1">
+                                <input type="checkbox" name="active" {{ ( $projects[0]->active == 1 ) ? 'checked=checked' : '' }}>
+                                <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

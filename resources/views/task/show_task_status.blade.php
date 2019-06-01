@@ -9,7 +9,7 @@
                 <div class="card-header">{{ __('Task Status Update') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('save_task_status') }}">
+                   
                         @csrf
 
                         <div class="form-group row">
@@ -17,9 +17,9 @@
 
                             <div class="col-md-6">
                               <select class="form-control" id="task_id" name="task_id">
-                                @foreach ($tasks as $task)
-                                        <option value="{{ $task->id }}">{{ $task->task_name }}</option>
-                                @endforeach
+                               
+                                        <option value="{{ $tasks[0]->task_id }}">{{ $tname[0]->task_name }}</option>
+                              
                               </select>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                             <label for="task_comments" class="col-md-4 col-form-label text-md-right">{{ __('Task Comments') }}</label>
 
                             <div class="col-md-6">
-                            <textarea class="form-control" style="height:150px" name="task_comments" placeholder="Detail"></textarea>
+                            <textarea class="form-control" style="height:150px" name="task_comments" placeholder="Detail">{{ $tasks[0]->update_comment }}</textarea>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -53,6 +53,7 @@
 
                             <div class="col-md-6">
                               <select class="form-control" id="task_status" name="task_status">
+                                     <option value="{{ $tasks[0]->task_status }}" {{ ( $tasks[0]->task_status == $tasks[0]->task_status ) ? 'selected' : '' }}>{{ $tasks[0]->task_status }}</option>
                                         <option value="On Process">On Process</option>
                                         <option value="Complete">Complete</option>
                                         <option value="Re-open">Re-open</option>
@@ -62,25 +63,24 @@
                         </div>
 
 
-                        <div class="form-group row">
+<!--                         <div class="form-group row">
                             <label for="manager_name" class="col-md-4 col-form-label text-md-right">{{ __('Task Created By') }}</label>
 
                             <div class="col-md-6">
-                              
-                                  <input id="manager_name" type="text" class="form-control @error('manager_name') is-invalid @enderror" name="manager_name" value="{{ $task->created_by }}" readonly>
-                                
+
                             </div>
-                        </div>
+                        </div> -->
 
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
+                              <a href="{{ route('task_status') }}">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Submit') }}
+                                    {{ __('Back') }}
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    
                 </div>
             </div>
         </div>

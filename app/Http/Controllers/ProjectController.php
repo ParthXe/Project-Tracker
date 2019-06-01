@@ -37,6 +37,7 @@ class ProjectController extends Controller
 		$project->project_duration= $request['duration'];
 		$project->project_status= $request['project_status'];
 		$project->project_created_by= $request['manager_name'];
+		$project->active = ($request['active'] == "on") ? 1 : 0;
 		// add other fields
 
 
@@ -71,12 +72,29 @@ class ProjectController extends Controller
 		$project_duration= $request['duration'];
 		$project_status= $request['project_status'];
 		$project_created_by= $request['manager_name'];
+		$project_active = ($request['active'] == "on") ? 1 : 0;
 
-		DB::update('update projects set project_id = ?,project_name=?,project_type=?,project_total_value=?,	project_start_date=?,project_end_date=?,project_duration=?,project_created_by=?,project_status=? where id = ?',[$project_id,$project_name,$project_type,$project_total_value,$project_start_date,$project_end_date,$project_duration,$project_created_by,$project_status, $id]);
+		DB::update('update projects set project_id = ?,project_name=?,project_type=?,project_total_value=?,	project_start_date=?,project_end_date=?,project_duration=?,project_created_by=?,project_status=?,active=? where id = ?',[$project_id,$project_name,$project_type,$project_total_value,$project_start_date,$project_end_date,$project_duration,$project_created_by,$project_status,$project_active, $id]);
 
 		        return redirect()->route('projects')
                         ->with('success','Project updated successfully');
 	}
+
+	public function filter_project(Request $request)
+    {
+
+    	//echo $request['message'];
+
+   
+      
+    		$projects = DB::select('select * from projects where project_status= ?', [$request->message]);
+    		 	$response = array(
+          'status' => 'success',
+          'projects' => $projects,
+      );
+				return response()->json($response);
+  
+    }
 
    	public function destroy_project($id)
     {

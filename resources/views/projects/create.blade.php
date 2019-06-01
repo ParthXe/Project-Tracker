@@ -2,11 +2,12 @@
 
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Create Project') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('save_project') }}">
@@ -132,7 +133,7 @@
                             <label for="manager_name" class="col-md-4 col-form-label text-md-right">{{ __('Project Created By') }}</label>
 
                             <div class="col-md-6">
-                                <input id="manager_name" type="text" class="form-control @error('manager_name') is-invalid @enderror" name="manager_name" value="{{Auth::user()->name}}" required>
+                                <input id="manager_name" type="text" class="form-control @error('manager_name') is-invalid @enderror" name="manager_name" value="{{Auth::user()->name}}" readonly>
 
                                 @error('manager_name')
                                     <span class="invalid-feedback" role="alert">
@@ -141,11 +142,20 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="manager_name" class="col-md-4 col-form-label text-md-right">{{ __('Active') }}</label>
 
+                            <div class="col-md-6">
+                                <label class="container1">
+                                <input type="checkbox" name="active">
+                                <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn" style="background:#fde03c;color:#000">
                                     {{ __('Submit') }}
                                 </button>
                             </div>

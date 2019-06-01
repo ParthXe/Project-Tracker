@@ -10,8 +10,14 @@ class TaskController extends Controller
 {
      public function task()
     {
-        $task_list = DB::select('select * from task_list');
-		return view('task.task_list',['tasks'=>$task_list]);
+    	$project_name = DB::select('select * FROM projects');
+        $task_list = DB::select('select projects.id, projects.project_name, task_list.id, task_list.task_name, task_list.task_description FROM projects INNER JOIN task_list ON projects.id=task_list.project_id');
+
+        $data = [
+			'projects'=> $project_name,
+			'tasks'=>$task_list
+		];
+		return view('task.task_list',$data);
     }
 
     public function create()
@@ -36,12 +42,13 @@ class TaskController extends Controller
 		$task->task_comments= $request['task_comments'];
 		$task->assigned_user_id= $request['user_id'];
 		$task->created_by= $request['manager_name'];
+		$task->active = ($request['active'] == "on") ? 1 : 0;
 		// add other fields
 
 
 		$task->save();
 
-		        return redirect()->route('task.task_list')
+		        return redirect()->route('task')
                         ->with('success','Task list create successfully');
 	}
 
@@ -114,10 +121,11 @@ class TaskController extends Controller
 		$task_comments= $request['task_comments'];
 		$assigned_user_id= $request['user_id'];
 		$created_by= $request['manager_name'];
+		$task_active = ($request['active'] == "on") ? 1 : 0;
 
-		DB::update('update task_list set project_id = ?,task_name=?,task_description=?,task_comments=?, assigned_user_id=?, created_by=? where id = ?',[$project_id,$task_name,$task_description,$task_comments,$assigned_user_id,$created_by, $id]);
+		DB::update('update task_list set project_id = ?,task_name=?,task_description=?,task_comments=?, assigned_user_id=?, created_by=?, active=? where id = ?',[$project_id,$task_name,$task_description,$task_comments,$assigned_user_id,$created_by,$task_active, $id]);
 
-		        return redirect()->route('task.task_list')
+		        return redirect()->route('task')
                         ->with('success','Task list updated successfully');
 	}
 
@@ -127,7 +135,7 @@ class TaskController extends Controller
 
         $project = Project::find($id);
         $project->delete();
-      	return redirect()->route('task.task_list')->with('success','Task delete successfully');
+      	return redirect()->route('task')->with('success','Task delete successfully');
     }
 
     public function status()
@@ -135,4 +143,23 @@ class TaskController extends Controller
       $task_list = DB::select('select * from task_status');
       return view('task.task_list',['tasks'=>$task_list]);
     }
+
+
+    public function filter_task(Request $request)
+    {
+
+    	//echo $request['message'];
+
+   
+      
+    		$projects = DB::select('select projects.id, projects.project_name,task_list.id, task_list.task_name, task_list.task_description FROM projects INNER JOIN task_list ON projects.id=task_list.project_id where projects.project_name= ?', [$request->message]);
+    		 	$response = array(
+          'status' => 'success',
+          'projects' => $projects,
+      );
+				return response()->json($response);
+  
+    }
+
+
 }

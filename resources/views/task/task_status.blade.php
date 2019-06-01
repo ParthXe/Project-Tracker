@@ -1,15 +1,16 @@
 @extends('layouts.admin')
- 
+
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
     <div class="row custome_heading">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Project List</h2>
+                <h2>Task Status</h2>
 
             </div>
 <form class="form_project" action="" method="POST">
     <select id="fetchval" class="fetchval btn dropdown-toggle" name="fetchby" >
+        <option class="dropdown-item" value="">Status</option>
         <option class="dropdown-item" value="In Progress">In Progress</option>
         <option class="dropdown-item" value="Complete">Complete</option>
         <option class="dropdown-item" value="Re Open">Re Open</option>
@@ -17,7 +18,7 @@
     </select>
     </form>
             <div class="pull-right" style="line-height: 36px;">
-                <a class="btn" style="background: #fde03c;color: #000;" href="{{ route('create_project') }}"> Create New Project</a>
+                <a class="btn" style="background: #fde03c;color: #000;" href="{{ route('assigned_task') }}"> Create New Task</a>
             </div>
         </div>
     </div>
@@ -38,7 +39,7 @@
             $.ajax(
             {
                 
-                url:"{{ route('filter_project') }}",
+                url:"{{ route('filter_status') }}",
                 type:'POST',
                 //data:'test='+keyword,
                 //dataType: 'JSON',
@@ -74,19 +75,24 @@
                         //console.log(data.projects[i].project_name);
                     }
                     div.innerHTML += '</table>';*/
-                    var j=1;
+                    var j = 1;
                     var div1=`<table class="table table-bordered" >
                                  <tr>
                                     <th>No</th>
-                                    <th>Name</th>
-                                    <th>Project Type</th>
+                                    <th>ProjectName</th>
+                                    <th>Task Name</th>
+                                    <th>Comment</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                  </tr>`;
+
                     for(var i=0;i<len;i++)
                     {
                         div1 +='<tr><td>'+j+'</td>';
                         div1 +='<td>'+data.projects[i].project_name+'</td>';
-                        div1 +='<td>'+data.projects[i].project_type+'</td>';
+                        div1 +='<td>'+data.projects[i].task_name+'</td>';
+                        div1 +='<td>'+data.projects[i].update_comment+'</td>';
+                        div1 +='<td>'+data.projects[i].task_status+'</td>';
                         div1 +='<td><a class="btn" style="background:#009472;color:#fff" href="/show_project/'+data.projects[i].id+'">Show</a> <a class="btn btn-primary" href="/edit_project/'+data.projects[i].id+'">Edit</a> <a class="btn btn-danger" href="/destroy_project/'+data.projects[i].id+'">X</a></td></tr>';
                         j++;
                     };
@@ -100,37 +106,44 @@
     
 </script>
 
-    <div id="table-container" style="padding: 10px 23px;">
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+<div id="table-container" style="padding: 10px 23px;">
     <table class="table table-bordered">
         <tr>
             <th>No</th>
-            <th>Name</th>
-            <th>Project Type</th>
-            <th width="280px">Action</th>
+            <th>Project Name</th>
+            <th>Task Name</th>
+            <th>Task Comment</th>
+            <th>Task Status</th>
+            <th width="250px">Action</th>
         </tr>
         <div style="display: none;">{{ $i=1 }}</div>
-        @foreach ($projects as $project)
+
+        @foreach ($statuses as $status)
         <tr>
             <td>{{ $i++}}</td>
-            <td>{{ $project->project_name }}</td>
-            <td>{{ $project->project_type }}</td>
+            <td>{{ $status->project_name }}</td>
+            <td>{{ $status->task_name }}</td>
+            <td>{{ $status->update_comment }}</td>
+            <td>{{ $status->task_status }}</td>
             <td>
                 <form action="" method="POST">
-   
-                    <a class="btn" style="background:#009472;color:#fff" href="{{ route('show_project',$project->id) }}">Show</a>
 
- 
-    
-                    <a class="btn btn-primary" href="{{ route('edit_project',$project->id) }}">Edit</a>
-   
+                    <a class="btn" style="background:#009472;color:#fff" href="{{ route('show_task_status', $status->id) }}">Show</a>
 
-      
-                    <a class="btn btn-danger" href="{{ route('destroy_project',$project->id) }}">X</a>
+                    <a class="btn btn-primary" href="{{ route('edit_task_status', $status->id) }}">Edit</a>
+
+                    <a class="btn btn-danger" href="{{ route('destroy_status', $status->id) }}">X</a>
+
                 </form>
             </td>
         </tr>
         @endforeach
     </table>
-  </div>
-     
+</div>
+
 @endsection

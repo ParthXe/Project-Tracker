@@ -2,6 +2,15 @@
 
 
 @section('content')
+<?php $start_time = $tasks[0]->task_start_time;
+      $end_time = $tasks[0]->task_end_time;
+
+$hrs = explode(":",$start_time);
+$final = $hrs[0] * 60 + $hrs[1];
+
+$endhrs = explode(":",$end_time);
+$final1 = $endhrs[0] * 60 + $endhrs[1];
+ ?>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -9,7 +18,7 @@
                 <div class="card-header">{{ __('Task Status Update') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('save_task_status') }}">
+                    <form method="POST" action="{{ route('update_assigned_task', $tasks[0]->id) }}">
                         @csrf
 
                         <div class="form-group row">
@@ -17,9 +26,9 @@
 
                             <div class="col-md-6">
                               <select class="form-control" id="task_id" name="task_id">
-                                @foreach ($tasks as $task)
-                                        <option value="{{ $task->id }}">{{ $task->task_name }}</option>
-                                @endforeach
+                               
+                                        <option value="{{ $tasks[0]->task_id }}">{{ $tname[0]->task_name }}</option>
+                              
                               </select>
                             </div>
                         </div>
@@ -27,7 +36,7 @@
                         <div class="form-group row">
                             <label for="time" class="col-md-4 col-form-label text-md-right">Time</label>
                             <div class="col-md-6 layout-slider">
-                                <input id="Slider5" type="text" name="area" value="675;720"/>
+                                <input id="Slider5" type="text" name="area" value="{{$final}};{{$final1}}"/>
                                 <input id="Start_Time" type="hidden" name="Start_Time" value=""/>
                                 <input id="End_Time" type="hidden" name="End_Time" value=""/>
                             </div>
@@ -38,7 +47,7 @@
                             <label for="task_comments" class="col-md-4 col-form-label text-md-right">{{ __('Task Comments') }}</label>
 
                             <div class="col-md-6">
-                            <textarea class="form-control" style="height:150px" name="task_comments" placeholder="Detail"></textarea>
+                            <textarea class="form-control" style="height:150px" name="task_comments" placeholder="Detail">{{ $tasks[0]->update_comment }}</textarea>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -53,6 +62,7 @@
 
                             <div class="col-md-6">
                               <select class="form-control" id="task_status" name="task_status">
+                                     <option value="{{ $tasks[0]->task_status }}" {{ ( $tasks[0]->task_status == $tasks[0]->task_status ) ? 'selected' : '' }}>{{ $tasks[0]->task_status }}</option>
                                         <option value="On Process">On Process</option>
                                         <option value="Complete">Complete</option>
                                         <option value="Re-open">Re-open</option>
@@ -62,15 +72,13 @@
                         </div>
 
 
-                        <div class="form-group row">
+<!--                         <div class="form-group row">
                             <label for="manager_name" class="col-md-4 col-form-label text-md-right">{{ __('Task Created By') }}</label>
 
                             <div class="col-md-6">
-                              
-                                  <input id="manager_name" type="text" class="form-control @error('manager_name') is-invalid @enderror" name="manager_name" value="{{ $task->created_by }}" readonly>
-                                
+
                             </div>
-                        </div>
+                        </div> -->
 
 
                         <div class="form-group row mb-0">

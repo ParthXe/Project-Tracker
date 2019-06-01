@@ -98,6 +98,8 @@
 
                             <div class="col-md-6">
                               <select class="form-control" id="role" name="role">
+                                        <option value="Programmer">Programmer</option>
+                                        <option value="HOD">HOD</option>
                                         <option value="Team Manager">Team Manager</option>
                                         <option value="Business Developer">Business Developer</option>
                                         <option value="User">User</option>
