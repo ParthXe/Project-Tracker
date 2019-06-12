@@ -11,7 +11,7 @@ class TaskController extends Controller
      public function task()
     {
     	$project_name = DB::select('select * FROM projects');
-        $task_list = DB::select('select projects.id, projects.project_name, task_list.id, task_list.task_name, task_list.task_description FROM projects INNER JOIN task_list ON projects.id=task_list.project_id');
+        $task_list = DB::select('select projects.id as projectId, projects.project_name, task_list.id as taskList_id, task_list.task_name, task_list.task_description, task_list.assigned_user_id, task_list.created_at, users.id as userID, users.name FROM projects INNER JOIN task_list ON projects.id=task_list.project_id INNER JOIN users ON task_list.assigned_user_id=users.id');
 
         $data = [
 			'projects'=> $project_name,
@@ -152,7 +152,7 @@ class TaskController extends Controller
 
    
       
-    		$projects = DB::select('select projects.id, projects.project_name,task_list.id, task_list.task_name, task_list.task_description FROM projects INNER JOIN task_list ON projects.id=task_list.project_id where projects.project_name= ?', [$request->message]);
+    		$projects = DB::select('select projects.id as projectId, projects.project_name, task_list.id as taskList_id, task_list.task_name, task_list.task_description, task_list.assigned_user_id, task_list.created_at, users.id as userID, users.name FROM projects INNER JOIN task_list ON projects.id=task_list.project_id INNER JOIN users ON task_list.assigned_user_id=users.id where projects.project_name= ?', [$request->message]);
     		 	$response = array(
           'status' => 'success',
           'projects' => $projects,

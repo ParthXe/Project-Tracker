@@ -93,7 +93,7 @@
                         div1 +='<td>'+data.projects[i].task_name+'</td>';
                         div1 +='<td>'+data.projects[i].update_comment+'</td>';
                         div1 +='<td>'+data.projects[i].task_status+'</td>';
-                        div1 +='<td><a class="btn" style="background:#009472;color:#fff" href="/show_project/'+data.projects[i].id+'">Show</a> <a class="btn btn-primary" href="/edit_project/'+data.projects[i].id+'">Edit</a> <a class="btn btn-danger" href="/destroy_project/'+data.projects[i].id+'">X</a></td></tr>';
+                        div1 +='<td><a class="btn" style="background:#009472;color:#fff" href="/show_task_status/'+data.projects[i].id+'">Show</a> <a class="btn btn-primary" href="/edit_task_status/'+data.projects[i].id+'">Edit</a> <a class="btn btn-danger" href="/delete_task_status/'+data.projects[i].id+'">X</a></td></tr>';
                         j++;
                     };
                     div1 +='</table>';

@@ -104,7 +104,9 @@
                                     <th>No</th>
                                     <th>Project Name</th>
                                     <th>Task Name</th>
-                                    <th>Task_description</th>
+                                    <th>User Name</th>
+                                    <th>Task description</th>
+                                    <th>Date</th>
                                     <th>Action</th>
                                  </tr>`;
                     for(var i=0;i<len;i++)
@@ -113,8 +115,10 @@
                         div1 +='<tr><td>'+j+'</td>';
                         div1 +='<td>'+data.projects[i].project_name+'</td>';
                         div1 +='<td>'+data.projects[i].task_name+'</td>';
+                        div1 +='<td>'+data.projects[i].name+'</td>';
                         div1 +='<td>'+data.projects[i].task_description+'</td>';
-                        div1 +='<td><a class="btn" style="background:#009472;color:#fff" href="/show_task/'+data.projects[i].id+'">Show</a> <a class="btn btn-primary" href="/edit_task/'+data.projects[i].id+'">Edit</a> <a class="btn btn-danger" href="/delete_task/'+data.projects[i].id+'">X</a></td></tr>';
+                        div1 +='<td>'+data.projects[i].created_at+'</td>';
+                        div1 +='<td><a class="btn" style="background:#009472;color:#fff" href="/show_task/'+data.projects[i].taskList_id+'">Show</a> <a class="btn btn-primary" href="/edit_task/'+data.projects[i].taskList_id+'">Edit</a> <a class="btn btn-danger" href="/delete_task/'+data.projects[i].taskList_id+'">X</a></td></tr>';
                         j++;
                     };
                     div1 +='</table>';
@@ -138,7 +142,9 @@
             <th>No</th>
             <th>Project Name</th>
             <th>Task Name</th>
+            <th>User Name</th>
             <th>Details</th>
+            <th>Date</th>
             <th width="280px">Action</th>
         </tr>
         <div style="display: none;">{{ $i=1 }}</div>
@@ -147,19 +153,21 @@
             <td>{{ $i++}}</td>
             <td>{{ $task->project_name }}</td>
             <td>{{ $task->task_name }}</td>
+            <td>{{ $task->name }}</td>
             <td>{{ $task->task_description }}</td>
+            <td>{{ $task->created_at }}</td>
             <td>
                 <form action="" method="POST">
    
-                    <a class="btn btn-info" href="{{ route('show',$task->id) }}">Show</a>
+                    <a class="btn" style="background:#009472;color:#fff" href="{{ route('show',$task->taskList_id) }}">Show</a>
 
  
     
-                    <a class="btn btn-primary" href="{{ route('edit',$task->id) }}">Edit</a>
+                    <a class="btn btn-primary" href="{{ route('edit',$task->taskList_id) }}">Edit</a>
    
 
       
-                    <a class="btn btn-danger" href="{{ route('destroy',$task->id) }}">X</a>
+                    <a class="btn btn-danger" href="{{ route('destroy',$task->taskList_id) }}">X</a>
                 </form>
             </td>
         </tr>
