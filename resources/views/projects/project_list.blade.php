@@ -1,5 +1,5 @@
 @extends('layouts.admin')
- 
+
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
     <div class="row custome_heading">
@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-   
+
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
@@ -37,7 +37,7 @@
             //alert(keyword);
             $.ajax(
             {
-                
+
                 url:"{{ route('filter_project') }}",
                 type:'POST',
                 //data:'test='+keyword,
@@ -45,9 +45,9 @@
                 data: {_token: CSRF_TOKEN, message:$(".fetchval").val()},
                 // beforeSend:function()
                 // {
-                     
+
                 //     $("#table-container").html('Working...');
-                    
+
                 // },
                 success:function(data)
                 {
@@ -97,7 +97,7 @@
             });
         });
     });
-    
+
 </script>
 
     <div id="table-container" style="padding: 10px 23px;">
@@ -116,21 +116,21 @@
             <td>{{ $project->project_type }}</td>
             <td>
                 <form action="" method="POST">
-   
+
                     <a class="btn" style="background:#009472;color:#fff" href="{{ route('show_project',$project->id) }}">Show</a>
 
- 
-    
-                    <a class="btn btn-primary" href="{{ route('edit_project',$project->id) }}">Edit</a>
-   
 
-      
-                    <a class="btn btn-danger" href="{{ route('destroy_project',$project->id) }}">X</a>
+
+                    <a class="btn btn-primary" href="{{ route('edit_project',$project->id) }}">Edit</a>
+
+
+
+                    <a class="btn btn-danger" href="{{ route('destroy_project',$project->id) }}">Delete</a>
                 </form>
             </td>
         </tr>
         @endforeach
     </table>
   </div>
-     
+
 @endsection
