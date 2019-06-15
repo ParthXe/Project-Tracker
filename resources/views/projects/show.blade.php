@@ -1,5 +1,5 @@
 @extends('layouts.admin')
- 
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -12,17 +12,17 @@
             </div>
         </div>
     </div>
-   
+
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
         </div>
     @endif
-   
+
          <div class="row">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Project Details') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('update', $projects[0]->id) }}">
@@ -166,5 +166,5 @@
         </div>
         </div>
   </div>
-      
+
 @endsection

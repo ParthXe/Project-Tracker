@@ -10,10 +10,13 @@
             </div>
 <form class="form_project" action="" method="POST">
     <select id="fetchval" class="fetchval btn dropdown-toggle" name="fetchby" >
-        <option class="dropdown-item" value="In Progress">In Progress</option>
-        <option class="dropdown-item" value="Complete">Complete</option>
-        <option class="dropdown-item" value="Re Open">Re Open</option>
-        <option class="dropdown-item" value="On Hold">On Hold</option>
+      <option value="Unassigned">Unassigned</option>
+      <option value="Client to revert">Client to revert</option>
+      <option value="Invoice raised/Waiting for payment">Invoice raised/Waiting for payment</option>
+      <option value="In progress">In progress</option>
+      <option value="On hold">On hold</option>
+      <option value="Completed">Completed</option>
+      <option value="Delivered">Delivered</option>
     </select>
     </form>
             <div class="pull-right" style="line-height: 36px;">
@@ -78,7 +81,7 @@
                     var div1=`<table class="table table-bordered" >
                                  <tr>
                                     <th>No</th>
-                                    <th>Name</th>
+                                    <th>Project Name</th>
                                     <th>Project Type</th>
                                     <th>Action</th>
                                  </tr>`;
@@ -104,7 +107,7 @@
     <table class="table table-bordered">
         <tr>
             <th>No</th>
-            <th>Name</th>
+            <th>Project Name</th>
             <th>Project Type</th>
             <th width="280px">Action</th>
         </tr>
@@ -125,7 +128,7 @@
 
 
 
-                    <a class="btn btn-danger" href="{{ route('destroy_project',$project->id) }}">Delete</a>
+                    <a class="btn btn-danger" href="{{ route('destroy_project',$project->id) }}">X</a>
                 </form>
             </td>
         </tr>
