@@ -153,12 +153,11 @@
                         <div class="form-group row">
                             <label for="scope[]" class="col-md-4 col-form-label text-md-right">{{ __('Scope') }}</label>
 
-                            <div class="col-md-6 wrapper">
-                              <div class="col-md-12" style="float:left;padding:0!important;margin-bottom: 1%;">
-                                    <div class="col-md-12" style="float:left;padding:0!important;">
+                            <div class="col-md-6">
+                              <div class="col-md-12" id="wrapper" style="float:left;padding:0!important;margin-bottom: 1%;">
                                       <span style="font-weight:800;margin-right:1%;float:left;">1.</span>
-                                      <input type="text" class="form-control" style="width:60%!important;float:left;" name="scope[]">
-                                      <select class="form-control" id="assign_department" style="width:30%!important;float:left;" name="assign_department[]">
+                                      <input type="text" class="form-control" style="width:60%!important;float:left;" id="scope1" name="scope1">
+                                      <select class="form-control" id="assign_department1" style="width:30%!important;float:left;" name="assign_department1">
                                                 <option value="">-Select HOD-</option>
                                                 <option value="Designer">Designer</option>
                                                 <option value="Programmer">Programmer</option>
@@ -174,7 +173,6 @@
                                         @enderror
                                     </div>
                               </div>
-                            </div>
                         </div>
                         <div class="form-group row">
                             <label for="manager_name" class="col-md-4 col-form-label text-md-right">{{ __('Active') }}</label>
@@ -207,7 +205,7 @@
 });*/
 $(document).ready(function(){
   var max_fields = 10;
-    var wrapper = $(".wrapper");
+    var wrapper = $("#wrapper");
     var add_button = $(".add_form_field");
 
     var x = 1;
@@ -216,9 +214,9 @@ $(document).ready(function(){
         if (x < max_fields) {
             x++;
             var html=`<div class="col-md-12" style="float:left;padding:0!important;">
-            <span style="font-weight:800;margin-right:1%;float:left;">`+x+`</span>
-            <input type="text" class="form-control" style="width:60%!important;float:left;" name="mytext[]"/>
-            <select class="form-control" id="assign_department" style="width:30%!important;float:left;" name="assign_department[]">
+            <span style="font-weight:800;margin-right:1%;float:left;">`+x+`.</span>
+            <input type="text" class="form-control" style="width:60%!important;float:left;" id="scope`+x+`" name="scope`+x+`"/>
+            <select class="form-control" id="assign_department`+x+`" style="width:30%!important;float:left;" name="assign_department`+x+`">
                       <option value="">-Select HOD-</option>
                       <option value="Designer">Designer</option>
                       <option value="Programmer">Programmer</option>
@@ -228,7 +226,8 @@ $(document).ready(function(){
             <span style="font-size:16px; font-weight:bold;">X</span>
             </button>
             </div>`;
-            $(wrapper).append(html); //add input box
+            //console.log(html);
+            console.log($(wrapper).append(html)); //add input box
         } else {
             alert('You Reached the limits')
         }
