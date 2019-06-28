@@ -398,7 +398,7 @@
               </li>
             </ul>
           </li> -->
-          <li class="nav-item has-treeview">
+<!--           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-table"></i>
               <p>
@@ -420,8 +420,8 @@
                 </a>
               </li>
             </ul>
-          </li>
-          <li class="nav-header">EXAMPLES</li>
+          </li> -->
+<!--           <li class="nav-header">EXAMPLES</li>
           <li class="nav-item">
             <a href="pages/calendar.html" class="nav-link">
               <i class="nav-icon fa fa-calendar"></i>
@@ -535,7 +535,7 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
 <!--           <li class="nav-header">MISCELLANEOUS</li>
           <li class="nav-item">
             <a href="https://adminlte.io/docs" class="nav-link">

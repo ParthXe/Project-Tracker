@@ -49,8 +49,8 @@ class ProjectController extends Controller
 	public function edit_project($id)
     {
     	$project = DB::select('select * from projects where id = ?',[$id]);
-                        //print_r($project);
-                        //exit();
+                        // print_r($project);
+                        // exit();
         return view('projects.edit',['projects'=>$project]);
     }
 
@@ -86,13 +86,25 @@ class ProjectController extends Controller
     	//echo $request['message'];
 
    
-      
-    		$projects = DB::select('select * from projects where project_status= ?', [$request->message]);
+	if($request['message']=='All')
+	{
+		$projects = DB::select('select * from projects');
     		 	$response = array(
           'status' => 'success',
           'projects' => $projects,
       );
 				return response()->json($response);
+	} 
+	else
+	{
+	 	$projects = DB::select('select * from projects where project_status= ?', [$request->message]);
+    		 	$response = array(
+          'status' => 'success',
+          'projects' => $projects,
+      );
+				return response()->json($response);
+	}     
+    	
   
     }
 
