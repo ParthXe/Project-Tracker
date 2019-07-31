@@ -59,24 +59,6 @@
                     //alert(temp[0]['project_name']);
                     //$("#table-container").html(data);
                     var div = document.getElementById('table-container');
-                    /*div.innerHTML += '<table class="table table-bordered">';
-                    div.innerHTML += '<tr>';
-                    div.innerHTML += '<th>No</th>';
-                    div.innerHTML += '<th>Name</th>';
-                    div.innerHTML += '<th>Details</th>';
-                    div.innerHTML += '</tr>';
-
-                    var len=data.projects.length;
-                    for(var i=0;i<len;i++){
-                        div.innerHTML += '<tr>';
-                        div.innerHTML += '<td>'+data.projects[i].project_id+'</td>';
-                        div.innerHTML += '<td>'+data.projects[i].project_name+'</td>';
-                        div.innerHTML += '<td>'+data.projects[i].project_type+'</td>';
-                        div.innerHTML += '</tr>';
-                        //alert(data.projects[i].project_id+' '+data.projects[i].project_name);
-                        //console.log(data.projects[i].project_name);
-                    }
-                    div.innerHTML += '</table>';*/
                     var j=1;
                     var name;
                     var name1;
